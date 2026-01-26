@@ -4,7 +4,10 @@ const newGame = document.querySelector(".new-game");
 const timerDisplay = document.querySelector(".timer");
 const count = document.querySelector(".count")
 const gameOver = document.createElement("p");
-const theme = document.querySelector("input.color")
+const theme = document.querySelector("input.color");
+const wrongAnswer = document.querySelector("#wrong-answer");
+const rightAnswer = document.querySelector("#right-answer");
+const flipCard = document.querySelector("#flip-card");
 
 let firstBox;
 let secondBox;
@@ -65,6 +68,7 @@ function GridSize (sizeInput){
         singleBox.textContent = value[i];
         singleBox.addEventListener("click", function (){
             timerStart();
+            flipCard.play();
             if (singleBox.classList.contains("matched")){
                 return
             }
@@ -94,6 +98,9 @@ function GridSize (sizeInput){
             // comparison
 
             if (firstBox.dataset.value === secondBox.dataset.value){
+                setTimeout(()=>{
+                    rightAnswer.play()
+                }, 1500);
                 firstBox.classList.add("matched");
                 secondBox.classList.add("matched");
                 moves++;
@@ -109,6 +116,9 @@ function GridSize (sizeInput){
                 
             }
             else{
+                setTimeout(()=>{
+                    wrongAnswer.play()
+                }, 1200);
                 moves++;
                 document.querySelector(".moves").textContent = `Moves: ${moves}`;
                 setTimeout(() => {
