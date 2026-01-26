@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Game</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&display=swap">
 </head>
 <body>
     <div class="container">
@@ -18,19 +20,21 @@
 
             <select name="difficulties" id="difficulties">
                 
-                <option value="Easy">Easy (4x4)</option>
-                <option value="Medium">Medium (6x6)</option>
-                <option value="Hard">Hard (9x9)</option>
+                <option value="Easy" data-value="4" selected>Easy (4x4)</option>
+                <option value="Medium" data-value="6">Medium (6x6)</option>
+                <option value="Hard" data-value="8">Hard (8x8)</option>
 
             </select>
+
+            <button class="new-game">New Game</button>
 
         </div>
 
         <div class="count">
 
-            <p class="moves">Moves: </p>
+            <p class="moves">Moves: 0</p>
 
-            <p class="timer">Time: 00:50</p>
+            <p class="timer">Time: 00:00</p>
 
         </div>
 
@@ -39,5 +43,7 @@
         </div>
 
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
