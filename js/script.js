@@ -29,6 +29,8 @@ selectOption.addEventListener("change", ()=>{
     Difficulties();
     timerStop();
     timerDisplay.textContent = "Time: 00:00";
+    seconds = 0;
+    timerValue = null;
     gameOver.remove();
 })
 
@@ -36,6 +38,8 @@ newGame.addEventListener("click", function (){
     Difficulties();
     timerStop();
     timerDisplay.textContent = "Time: 00:00";
+    seconds = 0;
+    timerValue = null;
     gameOver.remove();
 })
 
