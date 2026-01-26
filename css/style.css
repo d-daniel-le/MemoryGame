@@ -1,0 +1,113 @@
+body{
+    min-height: 100vh;
+    background-color: #d5e1ef;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Bitcount Single";
+}
+
+button:hover{
+     cursor: pointer;
+}
+
+/* Container CSS */
+
+.container{
+    width: fit-content;
+    /* height: 499px; */
+    background-color: #FFFFFF;
+    /* margin: 0 39% 0 39%; */
+    padding: 2%;
+    border-radius: 20px;
+    box-shadow: 0px 25px 25px rgba(0, 0, 0, 0.0477);
+    margin-bottom: 25px;
+}
+
+/* Heading CSS */
+
+.heading{
+    display: flex;
+    justify-content: center;
+}
+/* Mode CSS */
+.mode{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+    #difficulties{
+        width: 120px;
+        height: 35px;
+        border-color: #2196F3;
+        border-radius: 5px;
+        color: #2196F3;
+        font-family: "Bitcount Single";
+    }
+    .new-game{
+        width: 100px;
+        border: none;
+        background-color: #2196F3;
+        border-radius: 5px;
+        color: #FFFFFF;
+        font-family: "Bitcount Single";
+    }
+        .new-game:hover{
+            background-color: #FFFFFF;
+            border: 1px solid #2196F3;
+            color: #2196F3;
+        }
+
+/* Count CSS */
+
+.count{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 30px;
+    margin: 0;
+    justify-content: center;
+}
+
+.count > .moves, .timer, p{
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Grid CSS */
+
+.game-grid{
+    display: grid;
+    /* grid-template-columns: repeat(4, 60px); */
+    justify-content: center;
+    background-color: transparent;
+    row-gap: 5px;
+    column-gap: 5px;
+}
+
+.box{
+    width: 60px;
+    height: 60px;
+    border: none;
+    background-color: #2196F3;
+    border: 1px solid #76BFF7;
+    border-radius: 5px;
+    color: transparent;
+    font-size: 25px;
+    font-family: "Bitcount Single";
+}
+.box.revealed{
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: 1px solid #BEE2C0;
+}
+
+/* Game Over */
+.game-over{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-self: center;
+    margin-top: 0;
+    
+}
