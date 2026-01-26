@@ -34,7 +34,8 @@ button:hover{
 }
 /* Mode CSS */
 .mode{
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
     justify-content: center;
     gap: 15px;
 }
@@ -59,6 +60,10 @@ button:hover{
             border: 1px solid #2196F3;
             color: #2196F3;
         }
+    .color{
+        width: 120px;
+        height: 35px;
+    }
 
 /* Count CSS */
 
