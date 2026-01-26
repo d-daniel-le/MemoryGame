@@ -4,6 +4,7 @@ const newGame = document.querySelector(".new-game");
 const timerDisplay = document.querySelector(".timer");
 const count = document.querySelector(".count")
 const gameOver = document.createElement("p");
+const theme = document.querySelector("input.color")
 
 let firstBox;
 let secondBox;
@@ -15,6 +16,11 @@ let timerValue =null;
 // Create grid size
 let size = 4;
 Difficulties();
+
+theme.addEventListener("change", ()=>{
+    let colorValue = theme.value;
+    document.querySelector("body").style.backgroundColor = colorValue;
+})
 
 selectOption.addEventListener("change", ()=>{
     Difficulties();
