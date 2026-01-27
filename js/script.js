@@ -15,16 +15,30 @@ let stopClick = false;
 let moves;
 let seconds = 0;
 let timerValue =null;
+let time = "";
 
 // Create grid size
 let size = 4;
 Difficulties();
 
+// Default Theme
+document.querySelector(".new-game").style.setProperty("--theme-color", "#2196F3");
+
+// Theme
 theme.addEventListener("change", ()=>{
     let colorValue = theme.value;
     document.querySelector("body").style.backgroundColor = colorValue;
+    document.querySelectorAll(".box").forEach(function (box){
+        box.style.backgroundColor = colorValue;
+        box.style.border = `1px solid ${colorValue}`;
+    });
+    document.querySelector("#difficulties").style.color = colorValue;
+    document.querySelector("#difficulties").style.border = `1px solid ${colorValue}`;
+    document.querySelector(".new-game").style.setProperty("--theme-color", colorValue);
+
 })
 
+// Difficulty levels
 selectOption.addEventListener("change", ()=>{
     Difficulties();
     timerStop();
@@ -34,6 +48,7 @@ selectOption.addEventListener("change", ()=>{
     gameOver.remove();
 })
 
+// Restart or starting new game
 newGame.addEventListener("click", function (){
     Difficulties();
     timerStop();
@@ -43,8 +58,16 @@ newGame.addEventListener("click", function (){
     gameOver.remove();
 })
 
+// Grid Control
 function GridSize (sizeInput){
+    if (!document.querySelector(".instruction")){
+        const instruction = document.createElement("p");
+        instruction.classList.add("instruction");
+        instruction.innerHTML = "How to play:<br>Select 2 cards to find a match. The game ends when all cars are matched. <br>Let's the game begin!"
     
+        document.querySelector(".count").append(instruction);    
+    }
+
     moves = 0;
     document.querySelector(".moves").textContent = `Moves: ${moves}`;
     grid.innerHTML = "";
@@ -71,7 +94,10 @@ function GridSize (sizeInput){
         singleBox.dataset.value = value[i];
         singleBox.textContent = value[i];
         singleBox.addEventListener("click", function (){
-            timerStart();
+            if (document.querySelector(".instruction")){
+                document.querySelector(".instruction").remove(".instruction")
+                timerStart();
+            }
             flipCard.play();
             if (singleBox.classList.contains("matched")){
                 return
@@ -114,7 +140,7 @@ function GridSize (sizeInput){
                 if (grid.querySelectorAll(".matched").length ===totalBoxes){
                     timerStop();
                     gameOver.classList.add("game-over");
-                    gameOver.textContent = "Game Over";
+                    gameOver.innerHTML = `<span>Game Over</span>You took ${moves} moves and ${time}`;
                     count.append(gameOver)
                 }
                 
@@ -170,6 +196,8 @@ function timerStart(){
 
         const mins = Math.floor(seconds/60)
         const secs = seconds % 60;
+
+        time = `${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}`
 
         timerDisplay.textContent = `Timer: ${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
 
