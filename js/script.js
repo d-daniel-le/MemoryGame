@@ -16,6 +16,7 @@ let moves;
 let seconds = 0;
 let timerValue =null;
 let time = "";
+let colorValue;
 
 // Create grid size
 let size = 4;
@@ -26,10 +27,12 @@ document.querySelector(".new-game").style.setProperty("--theme-color", "#2196F3"
 
 // Theme
 theme.addEventListener("change", ()=>{
-    let colorValue = theme.value;
+    colorValue = theme.value;
     document.querySelector("body").style.backgroundColor = colorValue;
     document.querySelectorAll(".box").forEach(function (box){
-        box.style.backgroundColor = colorValue;
+        if (!box.classList.contains("revealed")){
+            box.style.backgroundColor = colorValue;
+        }
         box.style.border = `1px solid ${colorValue}`;
     });
     document.querySelector("#difficulties").style.color = colorValue;
@@ -41,6 +44,12 @@ theme.addEventListener("change", ()=>{
 // Difficulty levels
 selectOption.addEventListener("change", ()=>{
     Difficulties();
+    document.querySelectorAll(".box").forEach(function (box){
+        if (!box.classList.contains("revealed")){
+            box.style.backgroundColor = colorValue;
+        }
+        box.style.border = `1px solid ${colorValue}`;
+    });
     timerStop();
     timerDisplay.textContent = "Time: 00:00";
     seconds = 0;
@@ -51,6 +60,12 @@ selectOption.addEventListener("change", ()=>{
 // Restart or starting new game
 newGame.addEventListener("click", function (){
     Difficulties();
+    document.querySelectorAll(".box").forEach(function (box){
+        if (!box.classList.contains("revealed")){
+            box.style.backgroundColor = colorValue;
+        }
+        box.style.border = `1px solid ${colorValue}`;
+    });
     timerStop();
     timerDisplay.textContent = "Time: 00:00";
     seconds = 0;
@@ -117,12 +132,16 @@ function GridSize (sizeInput){
             if (!firstBox){
                 firstBox = singleBox;
                 firstBox.classList.add("revealed");
+                firstBox.style.backgroundColor = "#4CAF50";
+                firstBox.style.border = `1px solid #4CAF50`;
                 return;
             }
             else{
                 secondBox = singleBox;
                 secondBox.classList.add("revealed");
                 stopClick = true;
+                secondBox.style.backgroundColor = "#4CAF50";
+                secondBox.style.border = `1px solid #4CAF50`;
             }
 
             // comparison
@@ -154,6 +173,18 @@ function GridSize (sizeInput){
                 setTimeout(() => {
                     firstBox.classList.remove("revealed");
                     secondBox.classList.remove("revealed");
+                    if (colorValue ===undefined){
+                        firstBox.style.backgroundColor ="#2196F3"
+                        secondBox.style.backgroundColor = "#2196F3"
+                        firstBox.style.border = "#2196F3";
+                        secondBox.style.border = "#2196F3";
+
+                    } else{
+                        firstBox.style.backgroundColor = colorValue;
+                        secondBox.style.backgroundColor = colorValue;
+                        firstBox.style.border = `1px solid ${colorValue}`;
+                        secondBox.style.border = `1px solid ${colorValue}`;
+                    }
                     resetMoves();
                 }, 900);
             }
