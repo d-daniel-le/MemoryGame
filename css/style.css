@@ -93,12 +93,20 @@ button:hover{
     font-weight: 700;
     margin-bottom: 10px;
 }
+
 /* Instruction */
 .instruction{
     grid-column-start: 1;
     grid-column-end: 3;
     width: 250px;
     text-align: center;
+}
+
+/* Total Moves */
+.display-total{
+    grid-column-start: 1;
+    grid-column-end: 3;     
+    text-align: center;      
 }
 
 /* Grid CSS */
