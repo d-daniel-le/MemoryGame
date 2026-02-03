@@ -32,6 +32,8 @@ if (!loadState()){
     Difficulties();
 }else{
     (function loadCurrentState(){
+
+        // load state
         const state = loadState();
         if (state){
             size = state.size ?? 4;
@@ -41,7 +43,8 @@ if (!loadState()){
     
             document.querySelector(".moves").textContent = `Moves: ${moves}`;
             timerDisplay.textContent = `Time: ${String(Math.floor(seconds/60)).padStart(2,"0")}:${String(seconds%60).padStart(2,"0")}`;
-    
+
+            // determine difficulty level
             if (size === 4){
                 selectOption.value = "Easy";
             }
@@ -101,6 +104,7 @@ if (!loadState()){
                 }
             })
 
+            // handle not matched cases when refresh
             const notMatched = boxes.filter((box) => {
                 return box.classList.contains("revealed") && !box.classList.contains("matched")
             })
@@ -119,6 +123,7 @@ if (!loadState()){
                 saveState();
             }
 
+            // handle game over
             if (state.gameOveris){
                 timerStop();
                 const finishTime = state.endTime ?? time;
